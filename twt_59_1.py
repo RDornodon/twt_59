@@ -12,9 +12,10 @@ for _ in '*' * int(input()):
                 travels[departure][arrival] = (travel_time, x)
         else:
             travels[departure] = dict({arrival: (travel_time, x)})
-    cities = {'UK'}
+    cities = ['UK']
     routes = [['UK',0,[]]]
-    while F := {*filter(cities.__and__, travels)}:
+    while F := {*filter(cities.count, travels)}:
+        DC = []
         for city in F:
             destinations = travels.pop(city)
             for d_city, d_params in destinations.items():
@@ -22,8 +23,8 @@ for _ in '*' * int(input()):
                     if route[-2:] == city and d_city not in route:
                         R = [route + '>' + d_city, value + d_params[0], indices + [d_params[1]]]
                         routes.append(R)
-        cities = F
-
+                        DC += [d_city]
+        cities = [*{*DC}]
     R, *routes = [route for route in routes if route[0][-2:] == 'DZ']
     for route in routes:
         if route[1] < R[1] or (route[1] == R[1] and len(route[2]) < len(R[2])):
