@@ -3,7 +3,7 @@
 for _ in '*' * int(input()):
     travels = {}
     for x in range(1, 1 + int(input())):
-        departure, arrival, travel_time=input().split()
+        departure, arrival, travel_time = input().split()
         travel_time = int(travel_time)
         if departure in travels:
             if arrival in travels[departure]:
@@ -13,7 +13,7 @@ for _ in '*' * int(input()):
         else:
             travels[departure] = dict({arrival: (travel_time, x)})
     cities = ['UK']
-    routes = [['UK',0,[]]]
+    routes = [['UK', 0, []]]
     while F := {*filter(cities.count, travels)}:
         DC = []
         for city in F:
